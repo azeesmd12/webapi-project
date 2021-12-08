@@ -25,6 +25,7 @@ module.exports.routes = {
 'POST /login'    : 'UserController.userLoginVerify', 
 'POST /customer/loan': 'LoanController.addCustomer',
 'GET /admin/loan': 'LoanController.getAllCustomer',
+'PUT /admin/loan/:id':'LoanController.updateLoanStatus',
 
 
 };

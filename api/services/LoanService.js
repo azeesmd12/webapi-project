@@ -17,5 +17,10 @@ module.exports = {
         sails.log.info('@Services LoanService @method getAllCustomer :: input');
         let customers = await Loan.getAllCustomer();
         return customers;
+    },
+    updateLoanStatus:async function(input){
+        sails.log.info('@Services LoanService @method updateLoanStatus :: input');
+        let status = await Loan.updateStatus(input);
+        return status;
     }
 }

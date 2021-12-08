@@ -30,9 +30,18 @@ module.exports = {
         } catch (error) {
             sails.log.info("@Controller LoanController @method getAllCustomer :: Error",error);
             res.badRequest(error);
+        }   
+    },
+    updateLoanStatus: async function(req,res){
+        sails.log.info("@Controller LoanController @method updateLoanStatus :: req",req.params,req.body);
+        try {
+            let updateStatus = await LoanService.updateLoanStatus(req)
+            console.log("success");
+            res.json("Updated successfully");
+        } catch (error) {
+            sails.log.info("@Controller LoanController @method updateLoanStatus :: Error",error);
+            res.badRequest(error);
         }
-        
-        
     }
   
 

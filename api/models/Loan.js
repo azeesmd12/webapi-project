@@ -36,9 +36,19 @@ module.exports = {
         type:'ref',
         required:true
       },
+      loan_amount:{
+        type:'ref',
+        required:true
+      },
       eligible_loan:{
         type:'ref',
         required:true
+      },
+      approved_loan:{
+        type:'ref',
+      },
+      dispatched:{
+        type:'ref',
       },
       status:{
           type:'string'
@@ -56,6 +66,11 @@ module.exports = {
     sails.log.info("@model Loan @method getAllCustomer :: input");
     let customers = await Loan.find();
     return customers;
+  },
+  updateStatus:async function(input){
+    sails.log.info("@model Loan @method getAllCustomer :: input");
+    console.log(input.body.status);
+    return await Loan.update(input.params.id).set(input.body);
   }
 
 };
