@@ -67,6 +67,10 @@ module.exports = {
     let customers = await Loan.find();
     return customers;
   },
+  findCustomer: async function(input) {
+    sails.log.info("@model Loan @method findEligibleLoanAmt :: input",input);
+    return await Loan.findOne(input);
+  },
   updateStatus:async function(input){
     sails.log.info("@model Loan @method getAllCustomer :: input");
     console.log(input.body.status);
