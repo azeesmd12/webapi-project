@@ -32,6 +32,16 @@ module.exports = {
             res.badRequest(error);
         }   
     },
+    getCustomerByuser : async function(req,res){
+        sails.log.info("@Controller LoanController @method getCustomerByuser :: req",req.params);
+        try {
+            let customerDetails = await LoanService.getCustomerByuser(req.params);
+            res.json(customerDetails);
+        } catch (error) {
+            sails.log.info("@Controller LoanController @method getCustomerByuser :: Error",error);
+            res.badRequest(error);
+        }
+    },
     updateLoanStatus: async function(req,res){
         sails.log.info("@Controller LoanController @method updateLoanStatus :: req",req.params,req.body);
         try {

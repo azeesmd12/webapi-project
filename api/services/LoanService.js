@@ -1,6 +1,4 @@
 
-
-
 module.exports = {
 
     addCustomer : async function(input){
@@ -21,20 +19,15 @@ module.exports = {
         let customers = await Loan.getAllCustomer();
         return customers;
     },
+    getCustomerByuser:async function (input) {
+        sails.log.info('@Services LoanService @method getCustomerByuser :: input',input);
+        let customerDetails= await Loan.getCustomerByuser(input);
+        return customerDetails;
+    },
     updateLoanStatus:async function(input){
         sails.log.info('@Services LoanService @method updateLoanStatus :: input');
-        let customerInfo = await Loan.findCustomer(input.params.id);
-        let eligibleLoan = parseInt(customerInfo.eligible_loan.replace('₹','').replace(',',''));
-        if(input.body.approved_loan <= parseInt(eligibleLoan)){
             let status = await Loan.updateStatus(input);
-            return status;
-        }
-        else{
-            
-            throw {message:"Approved loan should not be more than Elgible loan"};
-
-        }
-        
+            return status;   
         
     }
 }

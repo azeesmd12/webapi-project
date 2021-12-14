@@ -52,6 +52,9 @@ module.exports = {
       },
       status:{
           type:'string'
+      },
+      emp_id:{
+        type:'ref'
       }
 
 
@@ -64,8 +67,15 @@ module.exports = {
   },
   getAllCustomer : async function(){
     sails.log.info("@model Loan @method getAllCustomer :: input");
-    let customers = await Loan.find();
+    let customers = await Loan.find().sort('id asc');
     return customers;
+  },
+  getCustomerByuser: async function(input) {
+    sails.log.info("@model Loan @method getCustomerByuser :: input",input);
+    let customerDetails = await Loan.find({
+      where:{emp_id:input.id}
+    });
+    return customerDetails;
   },
   findCustomer: async function(input) {
     sails.log.info("@model Loan @method findEligibleLoanAmt :: input",input);
@@ -73,8 +83,12 @@ module.exports = {
   },
   updateStatus:async function(input){
     sails.log.info("@model Loan @method getAllCustomer :: input");
-    console.log(input.body.status);
-    return await Loan.update(input.params.id).set(input.body);
+    try {
+      return await Loan.update(input.params.id).set(input.body);
+    } catch (error) {
+        throw {message:"Approved Loan is not greater than Eligible Loan"}
+    }
+    
   }
 
 };

@@ -26,6 +26,7 @@ module.exports.routes = {
 'POST /customer/loan': 'LoanController.addCustomer',
 'GET /admin/loan': 'LoanController.getAllCustomer',
 'PUT /admin/loan/:id':'LoanController.updateLoanStatus',
+'GET /user/loan/:id' :'LoanController.getCustomerByuser'
 
 
 };

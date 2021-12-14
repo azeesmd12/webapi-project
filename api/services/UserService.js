@@ -8,7 +8,7 @@ module.exports = {
         let verifyUser = await User.verifyUser(input);
         if (verifyUser.username == input.username && verifyUser.password == input.password) {
             let jwtToken = jwt.sign(
-                { username:verifyUser.username,role:verifyUser.role},
+                { id:verifyUser.id,username:verifyUser.username,role:verifyUser.role},
                 'jwttokenauthentication',
                 { expiresIn: '1h' });
             return jwtToken;
